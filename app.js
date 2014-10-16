@@ -2,6 +2,7 @@ var express = require("express"),
 	bodyParser = require("body-parser"),
 	hbs = require("hbs"),
 	path = require("path"),
+	cors = require("cors"),
 	app = express(),
 	port = process.env.PORT || 5000;
 
@@ -10,6 +11,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "html");
@@ -31,7 +34,24 @@ app.get("/", function(req, res, next) {
 	res.render("index");
 });
 
+app.post("/api/login", routes.login);
+app.post("/api/login/", routes.login);
+
+app.post("/api/register", routes.register);
+app.post("/api/register/", routes.register);
+
+app.post("/api/logout", routes.logout);
+app.post("/api/logout/", routes.logout);
+
 app.get("/api/:resource/*", routes.get);
+app.get("/api/:resource", routes.get);
+
+app.post("/api/:resource/", routes.post);
+app.post("/api/:resource", routes.post);
+
+app.put("/api/:resource/*", routes.put);
+
+app.delete("/api/:resource/*", routes.delete);
 
 app.use(function(req, res, next) {
 	res.status(404);
@@ -39,13 +59,6 @@ app.use(function(req, res, next) {
 	if (req.accepts("html")) {
 		res.render("404", {
 			url: req.url
-		});
-		return;
-	}
-
-	if (req.accepts("json")) {
-		res.send({
-			error: "Not found"
 		});
 		return;
 	}
