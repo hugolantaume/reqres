@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.set("views", __dirname + "/public");
+app.set("views", __dirname + "/views");
 app.set("view engine", "html");
 app.engine("html", hbs.__express);
 app.use(express.static(path.join(__dirname, "public")));
@@ -28,7 +28,7 @@ app.all("/api/*", [bodyParser(),
 ]);
 
 app.get("/", function(req, res, next) {
-	res.render("index.html");
+	res.render("index");
 });
 
 app.get("/api/:resource/*", routes.get);
@@ -37,7 +37,7 @@ app.use(function(req, res, next) {
 	res.status(404);
 
 	if (req.accepts("html")) {
-		res.render("404.html", {
+		res.render("404", {
 			url: req.url
 		});
 		return;
