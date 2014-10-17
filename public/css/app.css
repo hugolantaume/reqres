@@ -13,7 +13,8 @@ body {
   font-family: "rooney-sans", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+  color: #312540; }
 
 p {
   line-height: 1.625; }
@@ -32,10 +33,6 @@ em {
 h1 {
   font-size: 32px; }
 
-h2 {
-  font-size: 24px;
-  margin-bottom: 12px; }
-
 h3 {
   font-size: 22px;
   margin-bottom: 12px; }
@@ -43,7 +40,7 @@ h3 {
 [hidden] {
   display: none; }
 
-.muted {
+.muted, .console .endpoints li:before, .console .output .request .url, .console .output .request .response-code, .console .output .response .url, .console .output .response .response-code {
   font-size: 14px;
   color: #444; }
 
@@ -54,37 +51,45 @@ h3 {
       -ms-transform: translateY(-50%);
           transform: translateY(-50%); }
 
+.t-center {
+  text-align: center; }
+
 .wrap {
   max-width: 1024px;
   margin: auto; }
+
+.tagline, h2 {
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+  margin: 60px 0 48px 0;
+  text-shadow: 0 2px 0px #000; }
+
+h2 {
+  color: #312540;
+  text-shadow: none; }
 
 .logo a {
   text-decoration: none;
   font-weight: 500;
   color: #F2E8FF;
   font-size: 26px;
-  text-shadow: 0 2px 0px #000; }
+  text-shadow: 0 2px 0px #000;
+  text-transform: uppercase; }
 
 .header-content {
   position: relative;
   background-color: #2A438F;
-  background-image: -webkit-linear-gradient(270deg, rgba(42, 67, 143, 0.8) 0%, rgba(88, 58, 117, 0.8) 75%), url(/img/bg.svg);
-  background-image: linear-gradient(-180deg, rgba(42, 67, 143, 0.8) 0%, rgba(88, 58, 117, 0.8) 75%), url(/img/bg.svg);
+  background-image: -webkit-linear-gradient(270deg, rgba(42, 67, 143, 0.85) 0%, rgba(88, 58, 117, 0.85) 75%), url(/img/bg.svg);
+  background-image: linear-gradient(-180deg, rgba(42, 67, 143, 0.85) 0%, rgba(88, 58, 117, 0.85) 75%), url(/img/bg.svg);
   border-bottom: 1px solid rgba(0, 0, 0, 0.8);
   box-shadow: inset 0 -2px 2px -2px rgba(0, 0, 0, 0.8);
   overflow: auto;
-  padding-bottom: 48px; }
+  padding-bottom: 96px; }
 
 .main-header > .wrap {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding: 12px 0; }
-
-.tagline {
-  color: #fff;
-  font-size: 36px;
-  text-align: center;
-  margin: 48px 0;
-  text-shadow: 0 2px 0px #000; }
 
 .key-sells {
   text-align: center;
@@ -101,7 +106,7 @@ h3 {
     border-radius: 110px;
     text-align: center;
     overflow: hidden;
-    box-shadow: 0 3px 1px 2px rgba(31, 17, 51, 0.8), inset 0 -1px 3px -2px rgba(255, 255, 255, 0.4); }
+    box-shadow: 0 3px 1px 0 rgba(31, 17, 51, 0.8), inset 0 -1px 3px -2px rgba(255, 255, 255, 0.4); }
     .key-sells > .sell h3 {
       font-weight: 500; }
     .key-sells > .sell h3, .key-sells > .sell p {
@@ -111,7 +116,9 @@ h3 {
       -webkit-transform: scale(3.25) rotate(345deg);
           -ms-transform: scale(3.25) rotate(345deg);
               transform: scale(3.25) rotate(345deg);
-      color: rgba(231, 213, 255, 0.05); }
+      color: rgba(231, 213, 255, 0.05);
+      position: relative;
+      top: -25px; }
 
 .home-content {
   margin: 48px 0; }
@@ -127,35 +134,79 @@ h3 {
   display: inline-block;
   vertical-align: top; }
 .console .endpoints {
-  width: 30%; }
+  width: 30%;
+  margin-right: 24px;
+  position: relative; }
+  .console .endpoints li {
+    cursor: pointer;
+    border-bottom: 1px solid #F2E8FF;
+    color: #312540;
+    padding: 12px;
+    -webkit-transition: background-image .2s;
+            transition: background-image .2s; }
+    .console .endpoints li:first-of-type {
+      margin-top: 0; }
+    .console .endpoints li:last-of-type {
+      border-bottom: none; }
+    .console .endpoints li.active {
+      background-image: -webkit-linear-gradient(0deg, rgba(231, 213, 255, 0.5) 0%, white 90%);
+      background-image: linear-gradient(90deg, rgba(231, 213, 255, 0.5) 0%, white 90%); }
+    .console .endpoints li:before {
+      content: attr(data-http);
+      text-transform: uppercase;
+      font-size: 14px;
+      background-image: -webkit-linear-gradient(270deg, rgba(42, 67, 143, 0.85) 0%, rgba(88, 58, 117, 0.85) 75%);
+      background-image: linear-gradient(-180deg, rgba(42, 67, 143, 0.85) 0%, rgba(88, 58, 117, 0.85) 75%);
+      color: #fff;
+      border-radius: 3px;
+      font-weight: 500;
+      padding: 3px 6px;
+      margin-right: 6px; }
 .console .output {
-  width: 70%;
+  width: 60%;
   text-align: center; }
-  .console .output .toolbar {
-    text-align: left; }
   .console .output .request, .console .output .response {
     overflow: auto;
     display: inline-block;
-    width: 50%;
     text-align: left;
+    margin: 0 6px;
     vertical-align: top; }
+    .console .output .request .url, .console .output .request .response-code, .console .output .response .url, .console .output .response .response-code {
+      color: #4ba144;
+      display: block; }
     .console .output .request pre, .console .output .response pre {
       display: block;
       width: 100%;
-      height: 250px; }
+      height: auto;
+      margin-top: 24px;
+      font-size: 12px;
+      font-family: Monaco, Consolas, "Lucida Console", monospace;
+      background-color: rgba(231, 213, 255, 0.15);
+      border-radius: 4px;
+      padding: 12px; }
       .console .output .request pre .string, .console .output .response pre .string {
-        color: green; }
+        color: #445797; }
       .console .output .request pre .number, .console .output .response pre .number {
-        color: darkorange; }
+        color: #742DD2; }
       .console .output .request pre .boolean, .console .output .response pre .boolean {
         color: blue; }
       .console .output .request pre .null, .console .output .response pre .null {
         color: magenta; }
       .console .output .request pre .key, .console .output .response pre .key {
-        color: red; }
+        color: #5F4578; }
+  .console .output .request {
+    width: 35%; }
+  .console .output .response {
+    width: 60%; }
+
+.input {
+  display: inline-block; }
+  .input .input-before {
+    display: inline;
+    width: auto; }
 
 .spinner {
-  margin: 100px auto;
+  margin: 24px auto;
   width: 32px;
   height: 32px;
   position: relative; }

@@ -1,7 +1,7 @@
 (function() {
 	var config = {
 		"users": {
-			url: "users",
+			url: "users?page=2",
 			type: "get",
 			data: null
 		},
@@ -63,8 +63,7 @@
 			url: "register",
 			type: "post",
 			data: {
-				"email": "sydney@fife",
-				"password": "pistol"
+				"email": "sydney@fife"
 			}
 		},
 		"login-successful": {
@@ -106,20 +105,27 @@
 				settings = config[key],
 				xhr = new XMLHttpRequest();
 
+			for (var i = endpointEls.length - 1; i >= 0; i--) {
+				var ep = endpointEls[i];
+				ep.classList.remove("active");
+			};
+
+			element.classList.add("active");
+
 			if (settings.data) {
 				outputRequestEl.innerHTML = syntaxHighlight(JSON.stringify(settings.data, undefined, 4));
 			}
 
 			var finalURL = "http://reqr.es/api/" + settings.url;
-			urlEl.value = finalURL;
+			urlEl.innerHTML = finalURL;
 
 			outputResponseEl.innerHTML = "";
 			spinnerEl.removeAttribute("hidden");
 
 			xhr.open(settings.type.toUpperCase(), finalURL, true);
+			xhr.setRequestHeader("Content-Type", "application/json");
 			xhr.onload = function() {
-
-				responseCodeEl.value = xhr.status;
+				responseCodeEl.innerHTML = xhr.status;
 				if (xhr.responseText) {
 					outputResponseEl.innerHTML = syntaxHighlight(JSON.stringify(JSON.parse(xhr.responseText), undefined, 4));
 				}
@@ -128,6 +134,8 @@
 			xhr.send((settings.data) ? JSON.stringify(settings.data) : null);
 		});
 	});
+
+	endpointEls[0].click();
 
 	function syntaxHighlight(json) {
 		json = json.replace(/&/g, '&').replace(/</g, '&lt;').replace(/>/g, '&gt;');
