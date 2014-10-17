@@ -23,17 +23,17 @@ module.exports = {
 	},
 
 	post: function(req, res, next) {
-		var id = req.body.id || (Math.ceil(Math.random() * 1000)).toString().substring(0, 3);
-		return res.status(201).send(_.assign({
-			id: id,
-			createdAt: new Date().toISOString()
-		}, req.body));
+		var id = req.body.id || (Math.ceil(Math.random() * 1000)).toString().substring(0, 3),
+			returnData = req.body;
+		returnData.id = id;
+		returnData.createdAt = new Date().toISOString();
+		return res.status(201).send(returnData);
 	},
 
 	put: function(req, res, next) {
-		return res.status(201).send(_.assign({
-			updatedAt: new Date().toISOString()
-		}, req.body));
+		var returnData = req.body;
+		returnData.updatedAt = new Date().toISOString();
+		return res.status(201).send(returnData);
 	},
 
 	delete: function(req, res, next) {
@@ -76,7 +76,7 @@ module.exports = {
 		}
 	},
 
-	logout: function(req, res, next){
+	logout: function(req, res, next) {
 		return res.status(200).send({});
 	}
 
