@@ -47,7 +47,7 @@ h3 {
 }
 
 [hidden]{
-	display: none;
+	display: none !important;
 }
 
 .muted {
@@ -68,6 +68,8 @@ h3 {
 .wrap {
 	max-width: 1024px;
 	margin: auto;
+	padding-left: 24px;
+	padding-right: 24px;
 }
 
 .tagline {
@@ -82,6 +84,14 @@ h2 {
 	@extend .tagline;
 	color: #312540;
 	text-shadow: none;
+}
+
+hr {
+	margin: 48px 0 24px;
+	&.dark {
+		background-color: rgba(95, 69, 120, 0.2);
+		height: 1px;
+	}
 }
 
 .logo {
@@ -109,7 +119,8 @@ h2 {
 .main-header {
 	> .wrap {
 		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-		padding: 12px 0;
+		padding-top: 12px;
+		padding-bottom: 12px;
 	}
 }
 
@@ -161,6 +172,7 @@ h2 {
 }
 
 .console {
+	padding-top: 24px;
 	> div {
 		display: inline-block;
 		vertical-align: top;
@@ -169,15 +181,16 @@ h2 {
 		width: 30%;
 		margin-right: 24px;
 		position: relative;
+		margin-top: 72px;
 		li {
 			cursor: pointer;
 			border-bottom: 1px solid #F2E8FF;
-			color: #312540;
+			color: rgba(49, 37, 64, 0.6);
+			text-transform: uppercase;
 			padding: 12px;
+			font-size: 14px;
 			transition: background-image .2s;
-			&:first-of-type {
-				margin-top: 0;
-			}
+			text-align: right;
 			&:last-of-type {
 				border-bottom: none;
 			}
@@ -193,7 +206,9 @@ h2 {
 				border-radius: 3px;
 				font-weight: 500;
 				padding: 3px 6px;
-				margin-right: 6px;
+				float: left;
+				position: relative;
+				top: -3px;
 				@extend .muted;
 			}
 		}
@@ -206,6 +221,9 @@ h2 {
 				@extend .muted;
 				color: #4ba144;
 				display: block;
+			}
+			.response-code.bad {
+				color: #d14;
 			}
 			overflow: auto;
 			display: inline-block;
@@ -220,8 +238,9 @@ h2 {
 				font-size: 12px;
 				font-family: Monaco, Consolas, "Lucida Console", monospace;
 				background-color: rgba(231, 213, 255, 0.15);
-				border-radius: 4px;
+				border-radius: 3px;
 				padding: 12px;
+				border: 1px solid rgba(95, 69, 120, 0.1);
 				.string { color: #445797; }
 				.number { color: #742DD2; }
 				.boolean { color: blue; }

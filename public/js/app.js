@@ -111,25 +111,32 @@
 			};
 
 			element.classList.add("active");
-
+			outputRequestEl.setAttribute("hidden", true);
 			if (settings.data) {
 				outputRequestEl.innerHTML = syntaxHighlight(JSON.stringify(settings.data, undefined, 4));
+				outputRequestEl.removeAttribute("hidden");
 			}
 
 			var finalURL = "http://reqr.es/api/" + settings.url;
 			urlEl.innerHTML = finalURL;
 
 			outputResponseEl.innerHTML = "";
+			outputResponseEl.setAttribute("hidden", true);
 			spinnerEl.removeAttribute("hidden");
 
 			xhr.open(settings.type.toUpperCase(), finalURL, true);
 			xhr.setRequestHeader("Content-Type", "application/json");
 			xhr.onload = function() {
 				responseCodeEl.innerHTML = xhr.status;
+				responseCodeEl.classList.remove("bad");
+				if (xhr.status !== 200 && xhr.status !== 201) {
+					responseCodeEl.classList.add("bad");
+				}
 				if (xhr.responseText) {
 					outputResponseEl.innerHTML = syntaxHighlight(JSON.stringify(JSON.parse(xhr.responseText), undefined, 4));
 				}
 				spinnerEl.setAttribute("hidden", true);
+				outputResponseEl.removeAttribute("hidden");
 			};
 			xhr.send((settings.data) ? JSON.stringify(settings.data) : null);
 		});

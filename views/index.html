@@ -1,15 +1,16 @@
 <div class="home-content">
 	<div class="wrap">
 		<h2 class="t-center">Give it a try</h2>
+		<hr class="dark">
 		<section class="console" id="console">
 			<div class="endpoints" data-key="endpoints">
 				<ul>
 					<li data-id="users" data-key="endpoint" data-http="get" class="active">List users</li>
 					<li data-id="users-single" data-key="endpoint" data-http="get">Single user</li>
 					<li data-id="users-single-not-found" data-key="endpoint" data-http="get">Single user not found</li>
-					<li data-id="unknown" data-key="endpoint" data-http="get">List &lt;resource name&gt;</li>
-					<li data-id="unknown-single" data-key="endpoint" data-http="get">Single &lt;resource name&gt;</li>
-					<li data-id="unknown-single-not-found" data-key="endpoint" data-http="get">Single &lt;resource name&gt; not found</li>
+					<li data-id="unknown" data-key="endpoint" data-http="get">List &lt;resource&gt;</li>
+					<li data-id="unknown-single" data-key="endpoint" data-http="get">Single &lt;resource&gt;</li>
+					<li data-id="unknown-single-not-found" data-key="endpoint" data-http="get">Single &lt;resource&gt; not found</li>
 					<li data-id="post" data-key="endpoint" data-http="post">Create</li>
 					<li data-id="put" data-key="endpoint" data-http="put">Update</li>
 					<li data-id="delete" data-key="endpoint" data-http="delete">Delete</li>
@@ -22,11 +23,11 @@
 			</div><!--
 			--><div class="output">
 				<div class="request">
-					<p><strong>Request <span class="url" data-key="url"></span></strong></p>
+					<p><strong>Request <i class="fa fa-arrow-circle-up"></i> <span class="url" data-key="url"></span></strong></p>
 					<pre data-key="output-request"></pre>
 				</div><!--
 				--><div class="response">
-					<p><strong>Response <span class="response-code" data-key="response-code"></span></strong></p>
+					<p><strong>Response <i class="fa fa-arrow-circle-down"></i> <span class="response-code" data-key="response-code"></span></strong></p>
 					<div data-key="spinner" class="spinner" hidden>
 					  <div class="cube1"></div>
 					  <div class="cube2"></div>
