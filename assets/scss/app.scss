@@ -82,8 +82,11 @@ h3 {
 
 h2 {
 	@extend .tagline;
-	color: #312540;
+	color: #583A75;
 	text-shadow: none;
+	&.heading {
+		font-size: 28px;
+	}
 }
 
 hr {
@@ -105,11 +108,66 @@ hr {
 	}
 }
 
+.main-arrow {
+	padding-top: 24px;
+	color: #F2E8FF;
+	font-size: 24px;
+	> i {
+		position: relative;
+		animation: bobble 1s ease infinite;
+	} 
+}
+
+@keyframes bobble {
+	0% {
+		transform: translateY(3px);
+	}
+	50% {
+     	transform: translateY(0px);
+    }
+    100% {
+     	transform: translateY(3px);
+    }
+}
+
+.iconed {
+	list-style-type: none;
+	margin-left: 0;
+	text-align: center;
+	li {
+		display: inline-block;
+		width: 30%;
+		margin: 0 12px;
+		vertical-align: top;
+		i {
+			font-size: 36px;
+			margin-bottom: 12px;
+			color: #fff;
+			background-image: linear-gradient(-180deg, rgba(42, 67, 143, 0.85) 0%, rgba(88, 58, 117, 0.85) 75%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+		p:last-of-type {
+			color: rgba(49, 37, 64, 0.6);
+			font-size: 14px;
+			margin-top: 6px;
+		}
+	}
+}
+
+span.code {
+	font-size: 12px;
+	font-family: Monaco, Consolas, "Lucida Console", monospace;
+	border: 1px solid rgba(95, 69, 120, 0.1);
+	border-radius: 3px;
+	padding: 6px;
+}
+
 .header-content {
 	position: relative;
 	background-color: #2A438F;
-	background-image: linear-gradient(-180deg, rgba(42, 67, 143, 0.85) 0%, rgba(88, 58, 117, 0.85) 75%),
-					  url(/img/bg.svg);
+	background-image: linear-gradient(-180deg, rgba(42, 67, 143, 1) 0%, rgba(88, 58, 117, 1) 75%);
+	background-size: cover;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.8);
 	box-shadow: inset 0 -2px 2px -2px rgba(0, 0, 0, 0.8);
 	overflow: auto;
@@ -230,29 +288,28 @@ hr {
 			text-align: left;
 			margin: 0 6px;
 			vertical-align: top;
-			pre {
-				display: block;
-				width: 100%;
-				height: auto;
-				margin-top: 24px;
-				font-size: 12px;
-				font-family: Monaco, Consolas, "Lucida Console", monospace;
-				background-color: rgba(231, 213, 255, 0.15);
+			.request-title, .response-title {
+				border: 1px solid rgba(95, 69, 120, 0.1);
 				border-radius: 3px;
 				padding: 12px;
-				border: 1px solid rgba(95, 69, 120, 0.1);
-				.string { color: #445797; }
-				.number { color: #742DD2; }
-				.boolean { color: blue; }
-				.null { color: magenta; }
-				.key { color: #5F4578; }
+				overflow: hidden;
+				position: relative;
+				i {
+					font-size: 56px;
+					transform: scale(3.25) rotate(345deg);
+					color: rgba(231, 213, 255, 0.15);
+					position: absolute;
+					right: 0;
+					top: 0;
+					@extend .v-center;
+				}
 			}
 		}
 		.request {
-			width: 35%;
+			width: 40%;
 		}
 		.response {
-			width: 60%;
+			width: 55%;
 		}
 	}
 }
@@ -265,6 +322,60 @@ hr {
 	}
 }
 
+pre {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 12px 0;
+	font-size: 12px;
+	font-family: Monaco, Consolas, "Lucida Console", monospace;
+	background-color: rgba(231, 213, 255, 0.15);
+	border-radius: 3px;
+	padding: 12px;
+	border: 1px solid rgba(95, 69, 120, 0.1);
+	.string { color: #445797; }
+	.number { color: #742DD2; }
+	.boolean { color: blue; }
+	.null { color: magenta; }
+	.key { color: #5F4578; }
+}
+
+.technical-bits, .getting-started {
+	padding-top: 24px;
+	position: relative;
+}
+
+.getting-started {
+	border: 1px solid rgba(95, 69, 120, 0.1);
+	border-radius: 3px;
+	padding: 24px;
+	overflow: hidden;
+	> i {
+		font-size: 300px;
+		transform: scale(3.25) rotate(345deg);
+		color: rgba(231, 213, 255, 0.15);
+		position: absolute;
+		right: 24px;
+		bottom: 24px;
+	}
+	.tab {
+		display: inline-block;
+		width: 45%;
+		vertical-align: top;
+		margin: 0 12px;
+		text-align: left;
+		.tab-title {
+			display: inline-block;
+			font-size: 14px;
+			margin-bottom: 12px;
+			background-image: linear-gradient(-180deg, rgba(42, 67, 143, 0.85) 0%, rgba(88, 58, 117, 0.85) 75%);
+			color: #fff;
+			border-radius: 3px;
+			font-weight: 500;
+			padding: 3px 6px;
+		}
+	}
+}
 
 .spinner {
   margin: 24px auto;
@@ -314,4 +425,15 @@ hr {
     transform: rotate(-360deg);
     -webkit-transform: rotate(-360deg);
   }
+}
+
+footer {
+	padding: 24px 0;
+	p {
+		color: rgba(49, 37, 64, 0.6);
+		font-size: 14px;
+		i {
+			color: rgba(88, 58, 117, 0.85);
+		}
+	}
 }
