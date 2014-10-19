@@ -87,8 +87,7 @@ hr {
   font-weight: 500;
   color: #F2E8FF;
   font-size: 26px;
-  text-shadow: 0 2px 0px #000;
-  text-transform: uppercase; }
+  text-shadow: 0 2px 0px #000; }
 @media only screen and (max-width: 900px) {
   .logo {
     text-align: center; } }
