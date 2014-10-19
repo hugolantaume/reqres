@@ -141,7 +141,20 @@ hr {
 	font-size: 24px;
 	> i {
 		position: relative;
+		animation: bobble 1s ease infinite;
 	} 
+}
+
+@keyframes bobble {
+	0% {
+		transform: translateY(3px);
+	}
+	50% {
+     	transform: translateY(0px);
+    }
+    100% {
+     	transform: translateY(3px);
+    }
 }
 
 .iconed {
