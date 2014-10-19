@@ -44,7 +44,7 @@ h3 {
   font-size: 14px;
   color: #444; }
 
-.v-center, .key-sells > .sell i.fa, .console .output .request .request-title i, .console .output .request .response-title i, .console .output .response .request-title i, .console .output .response .response-title i {
+.v-center, .key-sells > .sell i, .console .output .request .request-title i, .console .output .request .response-title i, .console .output .response .request-title i, .console .output .response .response-title i {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -92,35 +92,8 @@ hr {
   color: #F2E8FF;
   font-size: 24px; }
   .main-arrow > i {
-    position: relative;
-    -webkit-animation: bobble 1s ease infinite;
-            animation: bobble 1s ease infinite; }
+    position: relative; }
 
-@-webkit-keyframes bobble {
-  0% {
-    -webkit-transform: translateY(3px);
-            transform: translateY(3px); }
-
-  50% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px); }
-
-  100% {
-    -webkit-transform: translateY(3px);
-            transform: translateY(3px); } }
-
-@keyframes bobble {
-  0% {
-    -webkit-transform: translateY(3px);
-            transform: translateY(3px); }
-
-  50% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px); }
-
-  100% {
-    -webkit-transform: translateY(3px);
-            transform: translateY(3px); } }
 .iconed {
   list-style-type: none;
   margin-left: 0;
@@ -130,6 +103,13 @@ hr {
     width: 30%;
     margin: 0 12px;
     vertical-align: top; }
+    @media only screen and (max-width: 900px) {
+      .iconed li {
+        width: 100%;
+        display: block;
+        margin-bottom: 24px;
+        margin-left: 0;
+        margin-right: 0; } }
     .iconed li i {
       font-size: 36px;
       margin-bottom: 12px;
@@ -182,19 +162,51 @@ span.code {
     text-align: center;
     overflow: hidden;
     box-shadow: 0 3px 1px 0 rgba(31, 17, 51, 0.8), inset 0 -1px 3px -2px rgba(255, 255, 255, 0.4); }
+    @media only screen and (max-width: 900px) {
+      .key-sells > .sell {
+        margin-bottom: 24px; } }
     .key-sells > .sell h3 {
       font-weight: 500; }
     .key-sells > .sell h3, .key-sells > .sell p {
       text-shadow: 0 2px 0px #000; }
-    .key-sells > .sell i.fa {
+    .key-sells > .sell i {
       font-size: 72px;
-      -webkit-transform: scale(3.25) rotate(345deg);
-          -ms-transform: scale(3.25) rotate(345deg);
-              transform: scale(3.25) rotate(345deg);
       color: rgba(231, 213, 255, 0.05);
       position: relative;
       top: -25px; }
 
+.sell i {
+  -webkit-animation: fadeIn 1s ease;
+          animation: fadeIn 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  overflow: hidden; }
+
+@-webkit-keyframes fadeIn {
+  0% {
+    -webkit-transform: scale(1.25) rotate(325deg);
+            transform: scale(1.25) rotate(325deg); }
+
+  50% {
+    -webkit-transform: scale(4.25) rotate(355deg);
+            transform: scale(4.25) rotate(355deg); }
+
+  100% {
+    -webkit-transform: scale(3.25) rotate(345deg);
+            transform: scale(3.25) rotate(345deg); } }
+
+@keyframes fadeIn {
+  0% {
+    -webkit-transform: scale(1.25) rotate(325deg);
+            transform: scale(1.25) rotate(325deg); }
+
+  50% {
+    -webkit-transform: scale(4.25) rotate(355deg);
+            transform: scale(4.25) rotate(355deg); }
+
+  100% {
+    -webkit-transform: scale(3.25) rotate(345deg);
+            transform: scale(3.25) rotate(345deg); } }
 .home-content {
   margin: 48px 0; }
 
@@ -210,11 +222,19 @@ span.code {
   .console > div {
     display: inline-block;
     vertical-align: top; }
+    @media only screen and (max-width: 900px) {
+      .console > div {
+        display: block; } }
   .console .endpoints {
     width: 30%;
     margin-right: 24px;
     position: relative;
     margin-top: 72px; }
+    @media only screen and (max-width: 900px) {
+      .console .endpoints {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 24px; } }
     .console .endpoints li {
       cursor: pointer;
       border-bottom: 1px solid #F2E8FF;
@@ -225,8 +245,19 @@ span.code {
       -webkit-transition: background-image .2s;
               transition: background-image .2s;
       text-align: right; }
+      @media only screen and (max-width: 900px) {
+        .console .endpoints li {
+          width: 45%;
+          display: inline-block;
+          font-size: 12px;
+          text-align: left;
+          vertical-align: top;
+          height: 80px; } }
       .console .endpoints li:last-of-type {
         border-bottom: none; }
+        @media only screen and (max-width: 900px) {
+          .console .endpoints li:last-of-type {
+            border-bottom: 1px solid #F2E8FF; } }
       .console .endpoints li.active {
         background-image: -webkit-linear-gradient(0deg, rgba(231, 213, 255, 0.5) 0%, white 90%);
         background-image: linear-gradient(90deg, rgba(231, 213, 255, 0.5) 0%, white 90%); }
@@ -243,9 +274,16 @@ span.code {
         float: left;
         position: relative;
         top: -3px; }
+        @media only screen and (max-width: 900px) {
+          .console .endpoints li:before {
+            float: none;
+            display: block; } }
   .console .output {
     width: 60%;
     text-align: center; }
+    @media only screen and (max-width: 900px) {
+      .console .output {
+        width: 100%; } }
     .console .output .request, .console .output .response {
       overflow: auto;
       display: inline-block;
@@ -274,8 +312,15 @@ span.code {
           top: 0; }
     .console .output .request {
       width: 40%; }
+      @media only screen and (max-width: 900px) {
+        .console .output .request {
+          width: 100%;
+          margin-bottom: 12px; } }
     .console .output .response {
       width: 55%; }
+      @media only screen and (max-width: 900px) {
+        .console .output .response {
+          width: 100%; } }
 
 .input {
   display: inline-block; }
@@ -293,7 +338,8 @@ pre {
   background-color: rgba(231, 213, 255, 0.15);
   border-radius: 3px;
   padding: 12px;
-  border: 1px solid rgba(95, 69, 120, 0.1); }
+  border: 1px solid rgba(95, 69, 120, 0.1);
+  overflow: scroll; }
   pre .string {
     color: #445797; }
   pre .number {
@@ -329,6 +375,11 @@ pre {
     vertical-align: top;
     margin: 0 12px;
     text-align: left; }
+    @media only screen and (max-width: 900px) {
+      .getting-started .tab {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px 0; } }
     .getting-started .tab .tab-title {
       display: inline-block;
       font-size: 14px;

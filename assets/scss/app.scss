@@ -8,6 +8,27 @@
   // outline: 1px solid red;
 }
 
+$non-retina: 'screen and (-webkit-max-device-pixel-ratio: 1)';
+$retina: 'screen and (-webkit-min-device-pixel-ratio: 2)';
+
+$breakpoints: (
+	'phablet': '(max-width: 900px)'
+)!default;
+
+$breakpoint-has-widths: ('phablet')!default;
+
+@mixin media($_name) {
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $expression: nth($breakpoint, 2);
+    @if $_name == $name and $expression {
+      @media only screen and #{$expression} {
+        @content;
+      }
+    }
+  }
+}
+
 html, body {
 	height: 100%;
 }
@@ -114,20 +135,7 @@ hr {
 	font-size: 24px;
 	> i {
 		position: relative;
-		animation: bobble 1s ease infinite;
 	} 
-}
-
-@keyframes bobble {
-	0% {
-		transform: translateY(3px);
-	}
-	50% {
-     	transform: translateY(0px);
-    }
-    100% {
-     	transform: translateY(3px);
-    }
 }
 
 .iconed {
@@ -139,6 +147,13 @@ hr {
 		width: 30%;
 		margin: 0 12px;
 		vertical-align: top;
+		@include media(phablet){
+			width: 100%;
+			display: block;
+			margin-bottom: 24px;
+			margin-left: 0;
+			margin-right: 0;
+		}
 		i {
 			font-size: 36px;
 			margin-bottom: 12px;
@@ -199,20 +214,48 @@ span.code {
 		overflow: hidden;
 		box-shadow: 0 3px 1px 0 rgba(31, 17, 51, 0.8),
 					inset 0 -1px 3px -2px rgba(255, 255, 255, 0.4);
+		@include media(phablet){
+			margin-bottom: 24px;	
+		}
 		h3 {
 			font-weight: 500;
 		}
 		h3, p {
 			text-shadow: 0 2px 0px #000;
 		}
-		i.fa {
+		i {
 			font-size: 72px;
-			transform: scale(3.25) rotate(345deg);
 			color: rgba(231, 213, 255, 0.05);
 			position: relative;
 			top: -25px;
 			@extend .v-center;
 		}
+	}
+}
+
+.sell {
+	i {
+		animation: fadeIn 1s ease;
+		animation-fill-mode: forwards;
+		overflow: hidden;
+		&:first-of-type {
+
+		}
+		&:last-of-type {
+
+		}
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		transform: scale(1.25) rotate(325deg);
+	}
+	50% {
+		transform: scale(4.25) rotate(355deg);
+	}
+	100% {
+		transform: scale(3.25) rotate(345deg);
 	}
 }
 
@@ -234,12 +277,20 @@ span.code {
 	> div {
 		display: inline-block;
 		vertical-align: top;
+		@include media(phablet){
+			display: block;	
+		}
 	}
 	.endpoints {
 		width: 30%;
 		margin-right: 24px;
 		position: relative;
 		margin-top: 72px;
+		@include media(phablet){
+			width: 100%;	
+			margin-right: 0;
+			margin-bottom: 24px;
+		}
 		li {
 			cursor: pointer;
 			border-bottom: 1px solid #F2E8FF;
@@ -249,8 +300,19 @@ span.code {
 			font-size: 14px;
 			transition: background-image .2s;
 			text-align: right;
+			@include media(phablet){
+				width: 45%;
+				display: inline-block;
+				font-size: 12px;
+				text-align: left;
+				vertical-align: top;
+				height: 80px;
+			}
 			&:last-of-type {
 				border-bottom: none;
+				@include media(phablet){
+					border-bottom: 1px solid #F2E8FF;
+				}
 			}
 			&.active {
 				background-image: linear-gradient(90deg, rgba(231, 213, 255, 0.5) 0%, #fff 90%);
@@ -268,12 +330,19 @@ span.code {
 				position: relative;
 				top: -3px;
 				@extend .muted;
+				@include media(phablet){
+					float: none;
+					display: block;
+				}
 			}
 		}
 	}
 	.output {
 		width: 60%;
 		text-align: center;
+		@include media(phablet){
+			width: 100%;	
+		}
 		.request, .response {
 			.url, .response-code {
 				@extend .muted;
@@ -307,9 +376,16 @@ span.code {
 		}
 		.request {
 			width: 40%;
+			@include media(phablet){
+				width: 100%;
+				margin-bottom: 12px;
+			}
 		}
 		.response {
 			width: 55%;
+			@include media(phablet){
+				width: 100%;
+			}
 		}
 	}
 }
@@ -333,6 +409,7 @@ pre {
 	border-radius: 3px;
 	padding: 12px;
 	border: 1px solid rgba(95, 69, 120, 0.1);
+	overflow: scroll;
 	.string { color: #445797; }
 	.number { color: #742DD2; }
 	.boolean { color: blue; }
@@ -364,6 +441,11 @@ pre {
 		vertical-align: top;
 		margin: 0 12px;
 		text-align: left;
+		@include media(phablet){
+			width: 100%;
+			display: block;
+			margin: 0 0 12px 0;	
+		}
 		.tab-title {
 			display: inline-block;
 			font-size: 14px;
