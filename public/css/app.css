@@ -305,7 +305,7 @@ pre {
   pre .key {
     color: #5F4578; }
 
-.technical-bits, .getting-started {
+.technical-bits, .getting-started, .peace-of-mind {
   padding-top: 24px;
   position: relative; }
 
@@ -339,6 +339,26 @@ pre {
       border-radius: 3px;
       font-weight: 500;
       padding: 3px 6px; }
+
+.peace-of-mind {
+  border: 1px solid rgba(95, 69, 120, 0.1);
+  border-radius: 3px;
+  padding: 24px;
+  overflow: hidden; }
+  .peace-of-mind > i {
+    font-size: 60px;
+    -webkit-transform: scale(3.25) rotate(345deg);
+        -ms-transform: scale(3.25) rotate(345deg);
+            transform: scale(3.25) rotate(345deg);
+    color: rgba(231, 213, 255, 0.15);
+    position: absolute;
+    right: 24px;
+    bottom: 24px; }
+  .peace-of-mind p {
+    color: rgba(49, 37, 64, 0.6);
+    font-size: 14px; }
+    .peace-of-mind p > strong {
+      color: #312540; }
 
 .spinner {
   margin: 24px auto;
