@@ -99,6 +99,9 @@ h3 {
 	text-align: center;
 	margin: 60px 0 48px 0;
 	text-shadow: 0 2px 0px #000;
+	@include media(phablet){	
+		margin: 30px 0 12px 0;		
+	}
 }
 
 h2 {
@@ -126,6 +129,9 @@ hr {
 		font-size: 26px;
 		text-shadow: 0 2px 0px #000;
 		text-transform: uppercase;
+	}
+	@include media(phablet){
+		text-align: center;				
 	}
 }
 
@@ -214,6 +220,7 @@ span.code {
 		overflow: hidden;
 		box-shadow: 0 3px 1px 0 rgba(31, 17, 51, 0.8),
 					inset 0 -1px 3px -2px rgba(255, 255, 255, 0.4);
+		mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 		@include media(phablet){
 			margin-bottom: 24px;	
 		}
@@ -224,6 +231,7 @@ span.code {
 			text-shadow: 0 2px 0px #000;
 		}
 		i {
+			transform: translateZ(0);
 			font-size: 72px;
 			color: rgba(231, 213, 255, 0.05);
 			position: relative;
@@ -238,12 +246,7 @@ span.code {
 		animation: fadeIn 1s ease;
 		animation-fill-mode: forwards;
 		overflow: hidden;
-		&:first-of-type {
-
-		}
-		&:last-of-type {
-
-		}
+		animation-delay: 0.3s;
 	}
 }
 
@@ -274,22 +277,23 @@ span.code {
 
 .console {
 	padding-top: 24px;
+	@include media(phablet){	
+		padding-top: 0;		
+	}
 	> div {
 		display: inline-block;
 		vertical-align: top;
-		@include media(phablet){
-			display: block;	
-		}
 	}
 	.endpoints {
 		width: 30%;
 		margin-right: 24px;
 		position: relative;
 		margin-top: 72px;
-		@include media(phablet){
-			width: 100%;	
+		@include media(phablet){	
 			margin-right: 0;
 			margin-bottom: 24px;
+			margin-top: 0;
+			width: 50%;
 		}
 		li {
 			cursor: pointer;
@@ -301,12 +305,14 @@ span.code {
 			transition: background-image .2s;
 			text-align: right;
 			@include media(phablet){
-				width: 45%;
-				display: inline-block;
 				font-size: 12px;
 				text-align: left;
+				width: 45%;
+				display: inline-block;
 				vertical-align: top;
-				height: 80px;
+				word-break: break-word;
+				padding: 6px;
+				transition: background-color .2s;
 			}
 			&:last-of-type {
 				border-bottom: none;
@@ -316,6 +322,10 @@ span.code {
 			}
 			&.active {
 				background-image: linear-gradient(90deg, rgba(231, 213, 255, 0.5) 0%, #fff 90%);
+				@include media(phablet){
+					background-color: rgba(231, 213, 255, 0.5) !important;
+					background-image: none;
+				}	
 			}
 			&:before {
 				content: attr(data-http);
@@ -341,7 +351,7 @@ span.code {
 		width: 60%;
 		text-align: center;
 		@include media(phablet){
-			width: 100%;	
+			width: 47%;
 		}
 		.request, .response {
 			.url, .response-code {
@@ -363,6 +373,9 @@ span.code {
 				padding: 12px;
 				overflow: hidden;
 				position: relative;
+				@include media(phablet){
+					word-break: break-word;	
+				}
 				i {
 					font-size: 56px;
 					transform: scale(3.25) rotate(345deg);
@@ -444,7 +457,7 @@ pre {
 		@include media(phablet){
 			width: 100%;
 			display: block;
-			margin: 0 0 12px 0;	
+			margin: 0 0 24px 0;	
 		}
 		.tab-title {
 			display: inline-block;
