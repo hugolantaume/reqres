@@ -284,8 +284,8 @@ span.code {
       text-transform: uppercase;
       padding: 12px;
       font-size: 14px;
-      -webkit-transition: background-image .2s;
-              transition: background-image .2s;
+      -webkit-transition: .2s;
+              transition: .2s;
       text-align: right; }
       @media only screen and (max-width: 900px) {
         .console .endpoints li {
@@ -296,9 +296,12 @@ span.code {
           vertical-align: top;
           word-break: break-word;
           padding: 6px;
-          height: 90px;
+          height: 76px;
+          margin-bottom: 4px;
           -webkit-transition: background-color .2s;
-                  transition: background-color .2s; } }
+                  transition: background-color .2s;
+          border: 1px solid rgba(95, 69, 120, 0.1);
+          border-radius: 3px; } }
       .console .endpoints li:last-of-type {
         border-bottom: none; }
         @media only screen and (max-width: 900px) {
@@ -310,8 +313,9 @@ span.code {
         @media only screen and (max-width: 900px) {
           .console .endpoints li.active {
             font-weight: 500;
-            color: #312540;
-            background-image: none; } }
+            color: rgba(49, 37, 64, 0.6);
+            background-image: none;
+            border: 1px solid rgba(49, 37, 64, 0.6); } }
       .console .endpoints li:before {
         content: attr(data-http);
         text-transform: uppercase;
@@ -330,7 +334,9 @@ span.code {
             float: none;
             display: block;
             text-align: center;
-            font-size: 11px; } }
+            font-size: 11px;
+            top: 0;
+            margin-bottom: 3px; } }
   .console .output {
     width: 60%;
     text-align: center; }
