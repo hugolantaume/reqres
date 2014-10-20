@@ -35,7 +35,7 @@ module.exports = {
 	put: function(req, res, next) {
 		var returnData = req.body;
 		returnData.updatedAt = new Date().toISOString();
-		return res.status(201).send(returnData);
+		return res.status(200).send(returnData);
 	},
 
 	delete: function(req, res, next) {
@@ -49,12 +49,12 @@ module.exports = {
 					token: config.token
 				});
 			} else {
-				return res.status(403).send({
+				return res.status(400).send({
 					error: "Missing password"
 				});
 			}
 		} else {
-			return res.status(403).send({
+			return res.status(400).send({
 				error: "Missing email or username"
 			});
 		}
@@ -63,16 +63,16 @@ module.exports = {
 	register: function(req, res, next) {
 		if (req.body.username || req.body.email) {
 			if (req.body.password) {
-				return res.status(200).send({
+				return res.status(201).send({
 					token: config.token
 				});
 			} else {
-				return res.status(403).send({
+				return res.status(400).send({
 					error: "Missing password"
 				});
 			}
 		} else {
-			return res.status(403).send({
+			return res.status(400).send({
 				error: "Missing email or username"
 			});
 		}
