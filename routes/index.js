@@ -39,7 +39,7 @@ module.exports = {
 	},
 
 	delete: function(req, res, next) {
-		return res.status(200).send({});
+		return res.status(204).send({});
 	},
 
 	login: function(req, res, next) {
