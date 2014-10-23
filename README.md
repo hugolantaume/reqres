@@ -3,6 +3,8 @@ ReqRes
 
 ReqRes is a bare-bones ExpressJS application.
 
+[Docs & Demos ⇒](http://reqr.es)
+
 ## Installation
 
 * Clone repo
