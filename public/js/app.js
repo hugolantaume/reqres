@@ -5,7 +5,7 @@ window.addEventListener("load", function() {
 (function() {
 	var config = {
 		"users": {
-			url: "users?page=2",
+			url: "users?page=1",
 			type: "get",
 			data: null
 		},
@@ -121,7 +121,7 @@ window.addEventListener("load", function() {
 				outputRequestEl.removeAttribute("hidden");
 			}
 
-			var finalURL = "http://reqr.es/api/" + settings.url;
+			var finalURL = "/api/" + settings.url;
 			urlEl.innerHTML = finalURL;
 
 			outputResponseEl.innerHTML = "";
