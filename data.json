@@ -2,51 +2,63 @@
 	"users": [{
 		"id": 1,
 		"first_name": "george",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg"
 	}, {
 		"id": 2,
 		"first_name": "lucille",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
 	}, {
 		"id": 3,
 		"first_name": "oscar",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg"
 	}, {
 		"id": 4,
 		"first_name": "eve",
-		"last_name": "holt"
+		"last_name": "holt",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg"
 	}, {
 		"id": 5,
 		"first_name": "gob",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg"
 	}, {
 		"id": 6,
 		"first_name": "tracey",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bigmancho/128.jpg"
 	}, {
 		"id": 7,
 		"first_name": "michael",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"
 	}, {
 		"id": 8,
 		"first_name": "lindsay",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/araa3185/128.jpg"
 	}, {
 		"id": 9,
 		"first_name": "tobias",
-		"last_name": "funke"
+		"last_name": "funke",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/vivekprvr/128.jpg"
 	}, {
 		"id": 10,
 		"first_name": "byron",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/russoedu/128.jpg"
 	}, {
 		"id": 11,
 		"first_name": "george michael",
-		"last_name": "bluth"
+		"last_name": "bluth",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mrmoiree/128.jpg"
 	}, {
 		"id": 12,
 		"first_name": "maeby",
-		"last_name": "funke"
+		"last_name": "funke",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hebertialmeida/128.jpg"
 	}],
 	"unknown": [{
 		"id": 1,

@@ -5,7 +5,7 @@ window.addEventListener("load", function() {
 (function() {
 	var config = {
 		"users": {
-			url: "users?page=1",
+			url: "users?page=2",
 			type: "get",
 			data: null
 		},
