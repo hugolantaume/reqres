@@ -121,7 +121,7 @@ window.addEventListener("load", function() {
 				outputRequestEl.removeAttribute("hidden");
 			}
 
-			var finalURL = "http://reqr.es/api/" + settings.url;
+			var finalURL = "/api/" + settings.url;
 			urlEl.innerHTML = finalURL;
 
 			outputResponseEl.innerHTML = "";
