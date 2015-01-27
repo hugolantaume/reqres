@@ -51,6 +51,8 @@ app.post("/api/:resource", routes.post);
 
 app.put("/api/:resource/*", routes.put);
 
+app.patch("/api/:resource/*", routes.patch);
+
 app.delete("/api/:resource/*", routes.delete);
 
 app.use(function(req, res, next) {
