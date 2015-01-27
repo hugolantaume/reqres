@@ -38,6 +38,12 @@ module.exports = {
 		return res.status(200).send(returnData);
 	},
 
+	patch: function(req, res, next) {
+		var returnData = req.body;
+		returnData.updatedAt = new Date().toISOString();
+		return res.status(200).send(returnData);
+	},
+
 	delete: function(req, res, next) {
 		return res.status(204).send({});
 	},

@@ -50,6 +50,14 @@ window.addEventListener("load", function() {
 				"job": "zion resident"
 			}
 		},
+		"patch": {
+			url: "users/2",
+			type: "patch",
+			data: {
+				"name": "morpheus",
+				"job": "zion resident"
+			}
+		},
 		"delete": {
 			url: "users/2",
 			type: "delete",
