@@ -16,6 +16,7 @@ app.use(cors());
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "html");
+app.set("view options", { layout: "layout.html" });
 app.engine("html", hbs.__express);
 app.use(express.static(path.join(__dirname, "public")));
 
