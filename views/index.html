@@ -45,7 +45,7 @@
 				<li>
 					<i class="fa fa-cloud"></i>
 					<p><strong>Hosted on <a href="https://www.digitalocean.com/?refcode=e4c34618634f">Digital Ocean</a></strong></p>
-					<p>Which means 99.99% Uptime SLA.<br>All you need is the base URL, and you're away: <br><br><span class="code">http://reqr.es/api/</span><br><br>The API is CORS enabled, so you can make requests right from the browser, no matter what domain, or even from somewhere like JSFiddle or JSBin.</p>
+					<p>Which means 99.99% Uptime SLA.<br>All you need is the base URL, and you're away: <br><br><span class="code">http://reqres.in/api/</span><br><br>The API is CORS enabled, so you can make requests right from the browser, no matter what domain, or even from somewhere like JSFiddle or JSBin.</p>
 				</li>
 				<li>
 					<i class="fa fa-file-code-o"></i>
@@ -69,7 +69,7 @@
 				<p>If you, for example, want to create a fake user:</p>
 				<pre>
 $.ajax({
-    url: "http://reqr.es/api/users",
+    url: "http://reqres.in/api/users",
     type: "POST",
     data: {
         name: "paul rudd",
@@ -99,7 +99,7 @@ $.ajax({
 				<p>If you've already got your own application entities, ie. "products", you can send them in the endpoint URL, like so:</p>
 				<pre>
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://reqr.es/api/products/3", true);
+xhr.open("GET", "http://reqres.in/api/products/3", true);
 xhr.onload = function(){
     console.log(xhr.responseText);
 };
