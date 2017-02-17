@@ -6,8 +6,10 @@ module.exports = {
 
 	get: function(req, res, next) {
 		var resource = req.params.resource,
-			itemArg = req.params[0] || null,
+			itemArg = req.params[0] || req.query.id || null,
 			items;
+
+		console.log(itemArg)
 
 		if (data[resource] && !itemArg) {
 			return returnAll(data[resource], req, res);
