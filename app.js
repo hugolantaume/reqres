@@ -6,6 +6,12 @@ var express = require("express"),
 	app = express(),
 	port = process.env.PORT || 5000;
 
+var getRandomInteger = function(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
@@ -24,7 +30,15 @@ var routes = require("./routes/");
 
 app.all("/api/*", [bodyParser(),
 	function(req, res, next) {
-		if (req.query && req.query.delay && !isNaN(req.query.delay)) {
+		if (req.query && req.query.delay) {
+			var delay = req.query.delay;
+			if(delay === 'random'){
+				var random = getRandomInteger(200, 3000);
+				return setTimeout(next, random);
+			}
+			if(isNaN(delay)){
+				return next();
+			}
 			return setTimeout(next, req.query.delay * 1000);
 		}
 		return next();
