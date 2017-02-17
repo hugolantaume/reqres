@@ -47,8 +47,7 @@ app.post("/api/logout/", routes.logout);
 app.get("/api/:resource/*", routes.get);
 app.get("/api/:resource", routes.get);
 
-app.post("/api/:resource/", routes.post);
-app.post("/api/:resource", routes.post);
+app.post("/api/:resource/*", routes.post);
 
 app.put("/api/:resource/*", routes.put);
 
