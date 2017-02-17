@@ -9,8 +9,6 @@ module.exports = {
 			itemArg = req.params[0] || req.query.id || null,
 			items;
 
-		console.log(itemArg)
-
 		if (data[resource] && !itemArg) {
 			return returnAll(data[resource], req, res);
 		} else if (data[resource] && itemArg) {
