@@ -45,33 +45,33 @@ app.all("/api/*", [bodyParser(),
 	}
 ]);
 
-app.get("/", function(req, res, next) {
-	res.render("index");
-});
+// app.get("/", function(req, res, next) {
+// 	res.render("index");
+// });
 
-app.post("/api/login", routes.login);
-app.post("/api/login/", routes.login);
+// app.post("/api/login", routes.login);
+// app.post("/api/login/", routes.login);
 
-app.post("/api/register", routes.register);
-app.post("/api/register/", routes.register);
+// app.post("/api/register", routes.register);
+// app.post("/api/register/", routes.register);
 
-app.post("/api/logout", routes.logout);
-app.post("/api/logout/", routes.logout);
+// app.post("/api/logout", routes.logout);
+// app.post("/api/logout/", routes.logout);
 
 app.get("/api/:resource/*", routes.get);
 app.get("/api/:resource", routes.get);
 
-app.post("/api/:resource/*", routes.post);
-app.post("/api/:resource", routes.post);
+// app.post("/api/:resource/*", routes.post);
+// app.post("/api/:resource", routes.post);
 
-app.put("/api/:resource/*", routes.put);
-app.put("/api/:resource", routes.put);
+// app.put("/api/:resource/*", routes.put);
+// app.put("/api/:resource", routes.put);
 
-app.patch("/api/:resource/*", routes.patch);
-app.patch("/api/:resource", routes.patch);
+// app.patch("/api/:resource/*", routes.patch);
+// app.patch("/api/:resource", routes.patch);
 
-app.delete("/api/:resource/*", routes.delete);
-app.delete("/api/:resource", routes.delete);
+// app.delete("/api/:resource/*", routes.delete);
+// app.delete("/api/:resource", routes.delete);
 
 app.use(function(req, res, next) {
 	res.status(404);
