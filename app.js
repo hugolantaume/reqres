@@ -58,6 +58,9 @@ app.all("/api/*", [bodyParser(),
 // app.post("/api/logout", routes.logout);
 // app.post("/api/logout/", routes.logout);
 
+app.get("/api/:resource/search", routes.search);
+app.get("/api/:resource/search/*", routes.search);
+
 app.get("/api/:resource/*", routes.get);
 app.get("/api/:resource", routes.get);
 

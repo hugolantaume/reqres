@@ -85,6 +85,20 @@ module.exports = {
 
 	logout: function(req, res, next) {
 		return res.status(200).send({});
+	},
+
+	search: function(req, res, next) {
+		var resource = req.params.resource,
+			items;
+
+		if (data[resource]) {
+			items = search(data[resource], req, res);
+			return returnAll(items, req, res);
+		} else {
+			return res.status(400).send({
+				error: "Unknown resource"
+			});
+		}
 	}
 
 };
@@ -112,4 +126,17 @@ function returnSingle(items, itemArg, res) {
 		});
 	}
 	return res.status(404).send({});
+}
+
+function search(items, req, res) {
+	allowedKeys = _.keys(items[0]);
+	filteredItems = items;
+	_.each(req.query, function(value, key) {
+		if (_.indexOf(allowedKeys, key) > -1) {
+			filteredItems = _.filter(filteredItems, function(item) {
+				return item[key].toLowerCase().indexOf(value.toLowerCase()) > -1;
+			});
+		}
+	});
+	return filteredItems;
 }
