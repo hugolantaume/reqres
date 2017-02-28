@@ -14,11 +14,10 @@ module.exports = {
 		} else if (data[resource] && itemArg) {
 			items = data[resource];
 			return returnSingle(items, itemArg, res);
-		} else if (!data[resource] && !itemArg) {
-			return returnAll(data.unknown, req, res);
-		} else if (!data[resource] && itemArg) {
-			items = data.unknown;
-			return returnSingle(items, itemArg, res);
+		} else {
+			return res.status(400).send({
+				error: "Unknown resource"
+			});
 		}
 	},
 
