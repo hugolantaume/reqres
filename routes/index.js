@@ -129,12 +129,17 @@ function returnSingle(items, itemArg, res) {
 
 function search(items, req, res) {
 	allowedKeys = _.keys(items[0]);
+	excludedQueryParams = ['page'];
 	filteredItems = items;
 	_.each(req.query, function(value, key) {
-		if (_.indexOf(allowedKeys, key) > -1) {
+		if (_.indexOf(excludedQueryParams, key) > -1) {
+			//nothing to be done
+		} else if (_.indexOf(allowedKeys, key) > -1) {
 			filteredItems = _.filter(filteredItems, function(item) {
 				return item[key].toLowerCase().indexOf(value.toLowerCase()) > -1;
 			});
+		} else {
+			filteredItems = [];
 		}
 	});
 	return filteredItems;
