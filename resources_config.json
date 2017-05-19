@@ -1,5 +1,8 @@
 {
   "stocks": {
-		"page_size": 100
+		"page_size": 500
+  },
+  "inventory": {
+    "page_size": 500
   }
 }
