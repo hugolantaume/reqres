@@ -11,7 +11,8 @@ module.exports = {
 			items;
 
 		if (data[resource] && !itemArg) {
-			return returnAll(data[resource], req, res, (resources_config[resource] || {}));
+			items = search(data[resource], req, res, true);
+			return returnAll(items, req, res, (resources_config[resource] || {}));
 		} else if (data[resource] && itemArg) {
 			items = data[resource];
 			return returnSingle(items, itemArg, res);
@@ -92,7 +93,7 @@ module.exports = {
 			items;
 
 		if (data[resource]) {
-			items = search(data[resource], req, res);
+			items = search(data[resource], req, res, false);
 			return returnAll(items, req, res, (resources_config[resource] || {}));
 		} else {
 			return res.status(400).send({
@@ -107,6 +108,7 @@ function returnAll(items, req, res, options={}) {
 	var page = req.query.page || 1,
 		offset = (page - 1) * (options.page_size || config.pagination.page_size),
 		paginatedItems = _.rest(items, offset).slice(0, (options.page_size || config.pagination.page_size));
+
 	return res.status(200).send({
 		page: page,
 		per_page: options.page_size || config.pagination.page_size,
@@ -128,19 +130,34 @@ function returnSingle(items, itemArg, res) {
 	return res.status(404).send({});
 }
 
-function search(items, req, res) {
+function getFilters(items, req, res) {
 	allowedKeys = _.keys(items[0]);
 	excludedQueryParams = ['page'];
-	filteredItems = items;
+	filters = {};
 	_.each(req.query, function(value, key) {
 		if (_.indexOf(excludedQueryParams, key) > -1) {
 			//nothing to be done
 		} else if (_.indexOf(allowedKeys, key) > -1) {
+			filters[key] = value;
+		}
+	});
+	return filters;
+}
+
+function search(items, req, res, exactMatch=false) {
+	filteredItems = items;
+	filters = getFilters(items, req, res);
+	_.each(filters, function(value, key) {
+		if (exactMatch) {
 			filteredItems = _.filter(filteredItems, function(item) {
-				return item[key].toLowerCase().indexOf(value.toLowerCase()) > -1;
+				x = (item[key].toLowerCase() == value.toLowerCase());
+				return (item[key].toLowerCase() == value.toLowerCase());
 			});
 		} else {
-			filteredItems = [];
+			filteredItems = _.filter(filteredItems, function(item) {
+				x = item[key].toLowerCase().indexOf(value.toLowerCase()) > -1;
+				return item[key].toLowerCase().indexOf(value.toLowerCase()) > -1;
+			});
 		}
 	});
 	return filteredItems;
