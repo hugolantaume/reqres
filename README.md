@@ -12,6 +12,14 @@ ReqRes is a bare-bones ExpressJS application.
 * `npm install`
 * `node app.js` or use [Nodemon](https://github.com/remy/nodemon)
 
+## Testing
+
+```
+npm test
+```
+
+This generates the final data set file and runs unit tests against the available routes.
+
 ## Tour
 
 * [app.js](https://github.com/interviewstreet/reqres/blob/master/app.js) - this is where we create the Express app and define all of our routes
