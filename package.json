@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "node compile_data.js && mocha tests/"
   },
   "author": "Ben Howdle <hello@benhowdle.im> (http://benhowdle.im/)",
@@ -12,6 +13,7 @@
     "body-parser": "^1.9.0",
     "cors": "^2.4.2",
     "express": "^4.9.7",
+    "fecha": "^2.3.3",
     "hbs": "^2.7.0",
     "lodash": "^2.4.1"
   },

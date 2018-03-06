@@ -10,16 +10,15 @@ module.exports = {
 			itemArg = req.params[0] || req.query.id || null,
 			items;
 
-		if (data[resource] && !itemArg) {
+		if (data[resource]) {
+			if (itemArg) {
+				items = data[resource];
+				return returnSingle(items, itemArg, res);
+			}
 			items = search(data[resource], req, res, true);
 			return returnAll(items, req, res, (resources_config[resource] || {}));
-		} else if (data[resource] && itemArg) {
-			items = data[resource];
-			return returnSingle(items, itemArg, res);
 		} else {
-			return res.status(400).send({
-				error: "Unknown resource"
-			});
+			return res.status(400).send({ error: "Unknown resource" });
 		}
 	},
 

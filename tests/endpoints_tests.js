@@ -1,42 +1,48 @@
 /*
 Check all `/api` endpoints
-  countries.json
-    ✓ /api/countries?page=...
-    ✓ /api/countries?property=...&page=...
-    ✓ /api/countries/search?property=...&page=...
-  inventory.json
-    ✓ /api/inventory?page=...
-    ✓ /api/inventory?property=...&page=...
-    ✓ /api/inventory/search?property=...&page=...
-  movies.json
-    ✓ /api/movies?page=... 
-    ✓ /api/movies?property=...&page=...
-    ✓ /api/movies/search?property=...&page=...
-  stocks.json
-    ✓ /api/stocks?page=...
-    ✓ /api/stocks?property=...&page=...
-    ✓ /api/stocks/search?property=...&page=...
+    countries.json
+      ✓ /api/countries?page=... (157ms)
+      ✓ /api/countries?property=...&page=...
+      ✓ /api/countries/search?property=...&page=...
+    inventory.json
+      ✓ /api/inventory?page=... (59ms)
+      ✓ /api/inventory?property=...&page=...
+      ✓ /api/inventory/search?property=...&page=...
+    movies.json
+      ✓ /api/movies?page=... (726ms)
+      ✓ /api/movies?property=...&page=...
+      ✓ /api/movies/search?property=...&page=...
+    stocks.json
+      ✓ /api/stocks?page=... (41ms)
+      ✓ /api/stocks?property=...&page=...
+      ✓ /api/stocks/search?property=...&page=...
+
+  Dynamic APIs
+    ✓ /datetime
 */
 
 
-var data = require('../data.json');
-var Promise = require('bluebird');
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var server = require('../app');
-var should = chai.should();
-var range = require('lodash.range');
+let data = require('../data.json'),
+    server = require('../app');
+
+const Promise = require('bluebird'),
+      chai = require('chai'),
+      chaiHttp = require('chai-http'),
+      range = require('lodash.range'),
+      fecha = require('fecha');
+
+const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Check all `/api` endpoints', function() {
+describe('Check all `/api` endpoints', () => {
 
-  describe('countries.json', function() {
-    it('/api/countries?page=...', function(done) {
+  describe('countries.json', () => {
+    it('/api/countries?page=...', (done) => {
       let startIndex = 0;
       let endIndex = 10;
       let pages = [];
-      for (var i = 1; i <= 25; i += 1)
+      for (let i = 1; i <= 25; i += 1)
         pages.push(i);
 
       Promise.mapSeries(pages, (page) => {
@@ -58,7 +64,7 @@ describe('Check all `/api` endpoints', function() {
       });
     });
 
-    it('/api/countries?property=...&page=...', function(done) {
+    it('/api/countries?property=...&page=...', (done) => {
       chai.request(server)
         .get('/api/countries?name=Nigeria&page=1')
         .then((res) => {
@@ -99,7 +105,7 @@ describe('Check all `/api` endpoints', function() {
         });
     });
 
-    it('/api/countries/search?property=...&page=...', function(done) {
+    it('/api/countries/search?property=...&page=...', (done) => {
       chai.request(server)
         .get('/api/countries/search?name=zam&page=1')
         .then((res) => {
@@ -173,12 +179,12 @@ describe('Check all `/api` endpoints', function() {
     });
   });
 
-  describe('inventory.json', function() {
-    it('/api/inventory?page=...', function(done) {
+  describe('inventory.json', () => {
+    it('/api/inventory?page=...', (done) => {
       let startIndex = 0;
       let endIndex = 500;
       let pages = [];
-      for (var i = 1; i <= 6; i += 1)
+      for (let i = 1; i <= 6; i += 1)
         pages.push(i);
 
       Promise.mapSeries(pages, (page) => {
@@ -200,7 +206,7 @@ describe('Check all `/api` endpoints', function() {
       });
     });
 
-    it('/api/inventory?property=...&page=...', function(done) {
+    it('/api/inventory?property=...&page=...', (done) => {
       chai.request(server)
         .get('/api/inventory?barcode=47000076&page=1')
         .then((res) => {
@@ -216,7 +222,7 @@ describe('Check all `/api` endpoints', function() {
         });
     });
 
-    it('/api/inventory/search?property=...&page=...', function(done) {
+    it('/api/inventory/search?property=...&page=...', (done) => {
       chai.request(server)
         .get('/api/inventory/search?item=Ball&page=1')
         .then((res) => {
@@ -471,12 +477,12 @@ describe('Check all `/api` endpoints', function() {
     });
   });
 
-  describe('movies.json', function() {
-    it('/api/movies?page=...', function(done) {
+  describe('movies.json', () => {
+    it('/api/movies?page=...', (done) => {
       let startIndex = 0;
       let endIndex = 10;
       let pages = [];
-      for (var i = 1; i <= 277; i += 1)
+      for (let i = 1; i <= 277; i += 1)
         pages.push(i);
 
       Promise.mapSeries(pages, (page) => {
@@ -498,7 +504,7 @@ describe('Check all `/api` endpoints', function() {
       });
     });
 
-    it('/api/movies?property=...&page=...', function(done) {
+    it('/api/movies?property=...&page=...', (done) => {
       chai.request(server)
         .get('/api/movies?imdbID=tt5847056&page=1')
         .then((res) => {
@@ -513,7 +519,7 @@ describe('Check all `/api` endpoints', function() {
         });
     });
 
-    it('/api/movies/search?property=...&page=...', function(done) {
+    it('/api/movies/search?property=...&page=...', (done) => {
       chai.request(server)
         .get('/api/movies/search?Title=Behind&page=1')
         .then((res) => {
@@ -559,8 +565,8 @@ describe('Check all `/api` endpoints', function() {
     });
   });
 
-  describe('stocks.json', function() {
-    it('/api/stocks?page=...', function(done) {
+  describe('stocks.json', () => {
+    it('/api/stocks?page=...', (done) => {
       let startIndex = 0;
       let endIndex = 500;
       let pages = range(1, 6);
@@ -584,7 +590,7 @@ describe('Check all `/api` endpoints', function() {
       });
     });
 
-    it('/api/stocks?property=...&page=...', function(done) {
+    it('/api/stocks?property=...&page=...', (done) => {
       chai.request(server)
         .get('/api/stocks?date=7-February-2000&page=1')
         .then((res) => {
@@ -599,7 +605,7 @@ describe('Check all `/api` endpoints', function() {
         });
     });
 
-    it('/api/stocks/search?property=...&page=...', function(done) {
+    it('/api/stocks/search?property=...&page=...', (done) => {
       chai.request(server)
         .get('/api/stocks/search?date=17-February&page=1')
         .then((res) => {
@@ -637,5 +643,19 @@ describe('Check all `/api` endpoints', function() {
           done();
         });
     });
+  });
+});
+
+describe('Dynamic APIs', () => {
+  it('/datetime', (done) => {
+    chai.request(server)
+        .get('/datetime')
+        .then((res) => {
+          res.body.should.be.eql({
+            time: fecha.format(new Date(), 'hh:mm:ss A'),
+            date: fecha.format(new Date(), 'MM-DD-YYYY')
+          });
+          done();
+        })
   });
 });

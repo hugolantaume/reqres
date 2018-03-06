@@ -1,4 +1,6 @@
-var express = require("express"),
+var routes = require("./routes/"),
+	datetime = require("./routes/datetime"),
+	express = require("express"),
 	bodyParser = require("body-parser"),
 	hbs = require("hbs"),
 	path = require("path"),
@@ -25,8 +27,6 @@ app.set("view engine", "html");
 app.set("view options", { layout: "layout.html" });
 app.engine("html", hbs.__express);
 app.use(express.static(path.join(__dirname, "public")));
-
-var routes = require("./routes/");
 
 app.all("/api/*", [bodyParser(),
 	function(req, res, next) {
@@ -64,6 +64,7 @@ app.get("/api/:resource/search/*", routes.search);
 app.get("/api/:resource/*", routes.get);
 app.get("/api/:resource", routes.get);
 
+app.get("/datetime", datetime.get);
 // app.post("/api/:resource/*", routes.post);
 // app.post("/api/:resource", routes.post);
 
