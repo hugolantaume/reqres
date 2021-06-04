@@ -1023,7 +1023,7 @@ describe('Check all `/api` endpoints', () => {
           });
     });
   })
-  
+
 });
 
 describe('articles.json', () => {
@@ -1167,6 +1167,26 @@ describe('food_outlets.json', () => {
                 "votes": 16203
             },
             "id": 41
+          });
+          done();
+        }).catch((err) => console.log(err));
+  });
+});
+
+
+describe('books.json', () => {
+  it('/api/books?genre=...', (done) => {
+    chai.request(server)
+        .get('/api/books?genre=Young Adult')
+        .then((res) => {
+          res.body.data[0].should.be.eql({
+              "author": "Cassandra Clare",
+              "book_name": "City of Bones",
+              "genre": "Young Adult",
+              "isbn13": "9781416914280",
+              "no_of_pages": 485,
+              "rating": 4.12,
+              "votes": 1178947
           });
           done();
         }).catch((err) => console.log(err));
