@@ -1121,6 +1121,111 @@ describe('article_users.json', () => {
 
 });
 
+
+describe('pokemon.json', () => {
+  it('/api/pokemon?page=...', (done) => {
+    let startIndex = 0;
+    let endIndex = 10;
+    let pages = [];
+    for (let i = 1; i <= 25; i += 1)
+      pages.push(i);
+
+    Promise.mapSeries(pages, (page) => {
+      return chai.request(server)
+          .get('/api/pokemon?page=' + page.toString())
+          .then((res) => {
+            return res.body.data;
+          })
+    }).then((results) => {
+      for (let result of results) {
+        result.should.be.eql(data['pokemon'].slice(startIndex, endIndex));
+        startIndex += 10;
+        endIndex += 10;
+      }
+      done();
+    }).catch((err) => {
+      console.log(err);
+      done(err);
+    });
+  });
+
+  it('/api/pokemon?username=...', (done) => {
+    chai.request(server)
+        .get('/api/pokemon?name=Electabuzz')
+        .then((res) => {
+          res.body.data[0].should.be.eql({
+              "id": 125,
+              "num": "125",
+              "name": "Electabuzz",
+              "type": [
+                  "Electric"
+              ],
+              "height": "1.09 m",
+              "weight": "30.0 kg",
+              "candy": "None",
+              "egg": "10 km",
+              "spawn_chance": 0.074,
+              "avg_spawns": 7.4,
+              "spawn_time": "04:28",
+              "multipliers": null,
+              "weaknesses": [
+                  "Ground"
+              ]
+          });
+          done();
+        });
+  });
+
+});
+describe('asteroids.json', () => {
+  it('/api/asteroids?page=...', (done) => {
+    let startIndex = 0;
+    let endIndex = 10;
+    let pages = [];
+    for (let i = 1; i <= 25; i += 1)
+      pages.push(i);
+
+    Promise.mapSeries(pages, (page) => {
+      return chai.request(server)
+          .get('/api/pokemon?page=' + page.toString())
+          .then((res) => {
+            return res.body.data;
+          })
+    }).then((results) => {
+      for (let result of results) {
+        result.should.be.eql(data['pokemon'].slice(startIndex, endIndex));
+        startIndex += 10;
+        endIndex += 10;
+      }
+      done();
+    }).catch((err) => {
+      console.log(err);
+      done(err);
+    });
+  });
+
+  it('/api/asteroids?orbit_class=...', (done) => {
+    chai.request(server)
+        .get('/api/asteroids?orbit_class=Apollo')
+        .then((res) => {
+          res.body.data[0].should.be.eql({
+              "designation": "419880 (2011 AH37)",
+              "discovery_date": "2011-01-07T00:00:00.000",
+              "h_mag": "19.7",
+              "moid_au": "0.035",
+              "q_au_1": "0.84",
+              "q_au_2": "4.26",
+              "period_yr": "4.06",
+              "i_deg": "9.65",
+              "pha": "Y",
+              "orbit_class": "Apollo"
+          });
+          done();
+        });
+  });
+
+});
+
 describe('Dynamic APIs', () => {
   it('/datetime', (done) => {
     chai.request(server)
