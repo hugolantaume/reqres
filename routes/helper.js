@@ -5,8 +5,13 @@ module.exports = {
     returnAll: function(items, req, res, options={}) {
         var page = req.query.page || 1,
             offset = (page - 1) * (options.page_size || config.pagination.page_size),
+            fields = (req.query.fields && req.query.fields.split(',')) || [],
             paginatedItems = _.rest(items, offset).slice(0, (options.page_size || config.pagination.page_size));
-    
+
+        if (fields && fields.length) {
+            paginatedItems = paginatedItems.map(item => _.pick(item, (val, key) => fields.includes(key)));
+        }
+
         return res.status(200).send({
             page: parseInt(page),
             per_page: options.page_size || config.pagination.page_size,
@@ -15,7 +20,7 @@ module.exports = {
             data: paginatedItems
         });
     },
-    
+
     returnSingle: function(items, itemArg, res) {
         var singleItem = items.filter(function(item) {
             return item.id == itemArg;
@@ -27,7 +32,7 @@ module.exports = {
         }
         return res.status(404).send({});
     },
-    
+
     search: function(items, req, res, exactMatch=false, prefixMatch = false) {
         filteredItems = items;
         filters = getFilters(items, req, res);
@@ -68,6 +73,6 @@ function getSanitizedValue(val) {
     if (["number", "boolean"].indexOf(typeof(val)) !== -1) {
         return val.toString();
     }
-    
+
     return val.toLowerCase();
 }
