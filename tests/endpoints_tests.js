@@ -550,6 +550,63 @@ describe('Check all `/api` endpoints', () => {
         });
     });
   });
+  describe('moviesdata.json', () => {
+    it('/api/moviesdata?page=...', (done) => {
+      let startIndex = 0;
+      let endIndex = 10;
+      let pages = [];
+      for (let i = 1; i <= 277; i += 1)
+        pages.push(i);
+
+      Promise.mapSeries(pages, (page) => {
+        return chai.request(server)
+          .get('/api/moviesdata?page=' + page.toString())
+          .then((res) => {
+            return res.body.data;
+          })
+      }).then((results) => {
+        for (let result of results) {
+          result.should.be.eql(data['moviesdata'].slice(startIndex, endIndex));
+          startIndex += 10;
+          endIndex += 10;
+        }
+        done();
+      }).catch((err) => {
+        console.log(err);
+        done(err);
+      });
+    });
+
+    it('/api/moviesdata?property=...&page=...', (done) => {
+      chai.request(server)
+        .get('/api/moviesdata?imdbID=tt2084949&page=1')
+        .then((res) => {
+          res.body.data[0].should.be.eql({
+            "Title": "Superman, Spiderman or Batman",
+            "Year": 2011,
+            "imdbID": "tt2084949"
+          });
+          done();
+        });
+    });
+
+    it('/api/moviesdata/search?property=...&page=...', (done) => {
+      chai.request(server)
+        .get('/api/moviesdata/search?Title=Behind&page=1')
+        .then((res) => {
+          res.body.data.should.be.eql([{
+              "Title": "'Harry Potter': Behind the Magic",
+              "Year": 2005,
+              "imdbID": "tt0497106"
+          }, {
+              "Title": "Walk & Talk - The West Wing Reunion: Behind the Scenes",
+              "Year": 2012,
+              "imdbID": "tt2401109"
+          }]);
+          done();
+        });
+    });
+  });
 
   describe('stocks.json', () => {
     it('/api/stocks?page=...', (done) => {
