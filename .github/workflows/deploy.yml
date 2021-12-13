@@ -1,7 +1,11 @@
 name: Deploy to Amazon ECS
 
-on: workflow_dispatch
-
+on: workflow_dispatch:
+  inputs:
+    ECR_Image_tag:
+      description: The ECR image to deploy
+      required: true
+      default: 'latest'
 
 jobs:
   continuous-deployment:
@@ -22,7 +26,7 @@ jobs:
       with:
         task-definition: task-definition.json
         container-name: HR-json-mock
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ github.event.inputs.ECR_Image_tag }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
