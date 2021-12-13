@@ -1,11 +1,12 @@
 name: Deploy to Amazon ECS
 
-on: workflow_dispatch:
-  inputs:
-    ECR_Image_tag:
-      description: The ECR image to deploy
-      required: true
-      default: 'latest'
+on:
+  workflow_dispatch:
+    inputs:
+      ECR_Image_tag:
+        description: The ECR image to deploy
+        required: true
+        default: 'latest'
 
 jobs:
   continuous-deployment:
