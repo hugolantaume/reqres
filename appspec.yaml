@@ -3,6 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
+        TaskDefinition: "arn:aws:ecs:us-east-1:563410562074:task-definition/json-mock-reqres:1"
         LoadBalancerInfo:
           ContainerName: "json-mock-container"
           ContainerPort: 5000
