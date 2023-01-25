@@ -16,7 +16,6 @@ Check all `/api` endpoints
       ✓ /api/stocks?page=... (41ms)
       ✓ /api/stocks?property=...&page=...
       ✓ /api/stocks/search?property=...&page=...
-
   Dynamic APIs
     ✓ /datetime
 */
@@ -1353,5 +1352,107 @@ describe('books.json', () => {
           });
           done();
         }).catch((err) => console.log(err));
+  });
+});
+
+describe('tvseries.json', () => {
+  it('/api/tvseries?page=...', (done) => {
+    let startIndex = 0;
+    let endIndex = 10;
+    let pages = [];
+    for (let i = 1; i <= 25; i += 1) pages.push(i);
+
+    Promise.mapSeries(pages, (page) => {
+      return chai
+        .request(server)
+        .get('/api/tvseries?page=' + page.toString())
+        .then((res) => {
+          return res.body.data;
+        });
+    })
+      .then((results) => {
+        for (let result of results) {
+          result.should.be.eql(data['tvseries'].slice(startIndex, endIndex));
+          startIndex += 10;
+          endIndex += 10;
+        }
+        done();
+      })
+      .catch((err) => {
+        console.log(err);
+        done(err);
+      });
+  });
+
+  it('/api/tvseries?property=...', (done) => {
+    chai
+      .request(server)
+      .get('/api/tvseries?name=Lost')
+      .then((res) => {
+        res.body.data[0].should.be.eql({
+          name: "Lost",
+          runtime_of_series: "(2004\u20132010)",
+          certificate: "A",
+          runtime_of_episodes: "44 min",
+          genre: "Adventure, Drama, Fantasy",
+          imdb_rating: 8.3,
+          overview:
+            "The survivors of a plane crash are forced to work together in order to survive on a seemingly deserted tropical island.",
+          no_of_votes: 496290,
+          id: 11,
+        });
+        done();
+      });
+  });
+});
+
+describe('universities.json', () => {
+  it('/api/universities?page=...', (done) => {
+    let startIndex = 0;
+    let endIndex = 10;
+    let pages = [];
+    for (let i = 1; i <= 25; i += 1) pages.push(i);
+
+    Promise.mapSeries(pages, (page) => {
+      return chai
+        .request(server)
+        .get('/api/universities?page=' + page.toString())
+        .then((res) => {
+          return res.body.data;
+        });
+    })
+      .then((results) => {
+        for (let result of results) {
+          result.should.be.eql(
+            data['universities'].slice(startIndex, endIndex)
+          );
+          startIndex += 10;
+          endIndex += 10;
+        }
+        done();
+      })
+      .catch((err) => {
+        console.log(err);
+        done(err);
+      });
+  });
+
+  it('/api/universities?property=...', (done) => {
+    chai
+      .request(server)
+      .get('/api/universities?rank_display=185')
+      .then((res) => {
+        res.body.data[0].should.be.eql({
+          university: "Indian Institute of Technology Delhi (IITD)",
+          rank_display: "185",
+          score: 45.9,
+          type: "Public",
+          student_faculty_ratio: 11,
+          international_students: "100",
+          faculty_count: "843",
+          location: { city: "New Delhi", country: "India", region: "Asia" },
+        });
+        done();
+      });
   });
 });
